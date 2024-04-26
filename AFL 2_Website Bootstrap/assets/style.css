@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+
+.container {
+  margin-bottom: 72px;
+}
+
+.col {
+  margin-bottom: 20px;
+}
+
+label{
+    font-size: 19px;
+}
+
+.resto-box {
+  position: relative;
+  border-radius: 10px;
+  height: 520px;
+  transform-style: preserve-3d;
+  box-shadow: 0px 0px 0px gainsboro;
+}
+
+.resto-box:hover::before {
+  opacity: 0.2;
+}
+
+.resto-box:hover::after {
+  opacity: 0.2;
+}
+
+.resto-name {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  font-size: 2em;
+  opacity: 0;
+  transform: translate3d(0, 0, 50px);
+  transition: 0.5s;
+}
+
+.resto-box:hover .resto-name {
+  top: 20px;
+  opacity: 1;
+}
+
+.resto-detail-button {
+  position: absolute;
+  background-color: #A3A467;
+  color: white;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 100px);
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 3;
+}
+
+.resto-box:hover .resto-detail-button {
+  opacity: 1;
+  bottom: 20px;
+}
+
+.resto-img {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate3d(-50%, -52%, 80px);
+  max-width: 350px;
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.resto-box:hover .resto-img {
+  transform: translate3d(-50%, -52%, 100px) rotate(5deg) scale(1.2);
+}
+
+.carousel-inner .carousel-item img {
+    object-fit: cover; 
+    height: 100%; 
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+.carousel-item {
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-caption-banner {
+    transform: translateY(0); 
+    opacity: 1; 
+    transition: transform 1.5s ease-in-out, opacity 2s ease-in-out; 
+}
+
+.carousel {
+    overflow: hidden;
+}
+
+.carousel-inner {
+    display: flex;
+    flex-direction: row;
+}
+
+body{
+    background-color: gainsboro;
+    
+}
+
+.carousel-item-banner {
+    position: relative;
+}
+
+.carousel-item-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);}
+
+.carousel-caption-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    color: white;
+    transition: transform 1.5s ease-in-out, opacity 2s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.carousel-caption h1 {
+    display: inline-block; 
+    position: relative; 
+    padding-bottom: 5px; 
+    margin-bottom: 10px; 
+  }
+  
+.carousel-caption h1::after {
+    content: ''; 
+    display: block; 
+    width: 50%; 
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
+    position: absolute; 
+    left: 25%;
+    bottom: 0;
+}
+    
+  
+.carousel-item-banner.active .carousel-caption-banner {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.carousel-inner-banner {
+    position: relative;
+}
+
+.carousel-control-prev-banner {
+    width: 5%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.carousel-control-next-banner {
+    width: 5%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+#carouselExampleCaptions{
+    height:100vh;
+    width:100%;
+    }
+
+.carousel-item-banner{
+    height: 100vh;
+}
+
+*{
+    font-family: "Bellefair", serif;  
+    font-weight: 400;
+    font-style: normal;
+}
+
+.navbar{
+    transition: all 0.5s;
+}
+
+.navbar-scrolled{
+    background-color: rgb(20, 20, 20);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn:hover{
+    color: #A3A467;
+}
+
+.btn-contact{
+    color: white;
+}
+
+.btn-contact:hover{
+    color: white;
+}
+
+.card {
+    transition: transform 0.3s;
+}
+.card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+}
