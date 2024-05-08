@@ -109,7 +109,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="photo" class="form-label"><b>Student's Photo</b></label>
-                                <input name="photo" class="form-control" type="file" id="photo" accept="image/png, image/jpeg" >
+                                <input name="photo" class="form-control" type="file" id="photo" accept="image/*" onchange="checkImage()">
                               </div>
                         </div>
                     </div>
@@ -246,7 +246,14 @@
                 };
             });
             
-
+            function checkImage(){
+                var inputImageType = document.querySelector("input[type=file]").files[0].type;
+                const valids = ['image/gif', 'image/jpeg', 'image/png'];
+                if(!valids.includes(inputImageType)){
+                    alert("Please insert Image only");
+                    document.querySelector("input[type=file]").value = "";
+                }
+            }
         </script>
     </body>
 </html>
