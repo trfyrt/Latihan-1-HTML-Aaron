@@ -1,0 +1,249 @@
+<html>
+    <head>
+        <title>Registration Form</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div>
+            <div class="container-fluid" style="background-color: brown; padding: 4vh;">
+                <h1 style="text-align: center; color: white;"><b>Registration Form</b></h1>
+                <p style="text-align: center; color: white;">Fill out the form carefully for registration</p>
+            </div>
+
+            <form id="registform">
+                <div class="container-md" style="margin-top: 4vh;">
+                    <div class="row">
+    
+                        <div class="col-md-6 col-sm-12">
+                            <div class="mb-3">
+                                <label for="name" class="form-label"><b>Student's Name</b></label>
+                                <input name="name" class="form-control" id="name" placeholder="Your name" >
+                            </div>
+                        </div>
+        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="mb-3">
+                                <label for="birthdate" class="form-label"><b>Date of birth</b></label>
+                                <input name="birthdate" type="date" class="form-control" id="birthdateIn" >
+                            </div>
+                        </div>
+        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="mb-3">
+                                <label for="gender" class="form-label"><b>Gender</b></label>
+                                <select class="form-select" name="gender" id="gender" required>
+                                    <option value="" disabled selected>Choose one</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                    </div>
+        
+                    <div class="row">
+        
+                        <div class="col-md-6 col-sm-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label"><b>Email Address</b></label>
+                                <div class="form-floating">
+                                    <input name="email" type="email" class="form-control" id="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" placeholder="Email Address" >
+                                    <label for="email" style="color: gray;">Example: yourname@example.com</label>    
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6 col-sm-6">
+                            <div class="mb-3">
+                                <label for="phone" class="form-label"><b>Phone Number</b></label>
+                                <div class="form-floating">
+                                    <input name="phone" type="tel" class="form-control" id="phone" pattern="(\+62|62|0)8[1-9][0-9]{6,9}$" placeholder="Phone Number" value="+62" >
+                                    <label for="phone" style="color: grey;">Format: +628XXXXXXXXXX</label>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="address" class="form-label"><b>Student's Address</b></label>
+                                <textarea name="address" class="form-control" id="address" rows="3" placeholder="Your Address" ></textarea>
+                              </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="program" class="form-label"><b>Program of Interest</b></label>
+                                <select class="form-select" name="program" id="program" required>
+                                    <option value="" disabled selected>Choose one Program</option>
+                                    <option value="Management (MAN)">Management</option>
+                                    <option value="Informatics (IMT)">Informatics</option>
+                                    <option value="Visual Communication Design (VCD)">Visual Communication Design</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="mb-3">
+                                <label for="father" class="form-label"><b>Father's Name</b></label>
+                                <input name="father" class="form-control" id="father" placeholder="Father's name" >
+                            </div>
+                        </div>
+        
+                        <div class="col-md-6 col-sm-12">
+                            <div class="mb-3">
+                                <label for="mother" class="form-label"><b>Mother's Name</b></label>
+                                <input name="mother" class="form-control" id="mother" placeholder="Mother's name" >
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="photo" class="form-label"><b>Student's Photo</b></label>
+                                <input name="photo" class="form-control" type="file" id="photo" >
+                              </div>
+                        </div>
+                    </div>
+        
+                </div>
+    
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn" form="registform" value="submit" style="margin: 6vh; width: 40vh; color: white; background-color: brown;"><b>Submit!</b></button>
+                </div>
+            </form>
+
+            <div class="container" id="output"></div>
+
+
+        </div>
+
+
+
+        <script>
+            var inputan = document.querySelectorAll("input");
+            for(var i = 0; i < inputan.length; i++){
+                inputan[i].required = true;
+            }
+            document.getElementById("registform").addEventListener("submit", function(event){
+                event.preventDefault();
+                event.pre
+                var formData = new FormData(this);
+                var formDataSerialized = {};
+                for (var [key, value] of formData.entries()){
+                    formDataSerialized[key] = value;
+                }
+                console.log(formDataSerialized);
+                var reader = new FileReader();
+                reader.readAsDataURL(document.querySelector("input[type=file]").files[0]);
+                reader.onload = function(){
+                    localStorage.setItem("image", reader.result);
+                };
+                var srcFoto = localStorage.getItem("image");
+                var styleFoto = `style="
+                    width: 30vw;
+                    height: auto;
+                "`;
+                var output =
+            `<br><hr><br>
+            <h3 style="text-align: center;"><b>Output</b></h3>
+            <table class ="table">
+                <tr>
+                    <td>
+                        <b>Name</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['name']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Date of Birth</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['birthdate']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Gender</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['gender']}</b>
+
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Email Address</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['email']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Home Address</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['address']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Phone Number</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['phone']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Program of Interest</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['program']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Father's Name</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['father']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <b>Mother's Name</b>
+                        </td>
+                    <td>
+                        <b>: ${formDataSerialized['mother']}</b>
+                        </td>
+                    </tr>
+                <tr>
+                    <td style="vertical-align: middle;">
+                        <b>Photo</b>
+                        </td>
+                    <td>
+                        <b>:</b> <img src="${srcFoto}" ${styleFoto}/>
+                        </td>
+                    </tr>
+                </table>`
+
+            document.getElementById('output').innerHTML = "";
+            document.getElementById('output').innerHTML += output;
+
+            });
+
+        </script>
+    </body>
+</html>
