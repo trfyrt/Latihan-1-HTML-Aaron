@@ -33,7 +33,7 @@
                         <div class="col-md-3 col-sm-6">
                             <div class="mb-3">
                                 <label for="gender" class="form-label"><b>Gender</b></label>
-                                <select class="form-select" name="gender" id="gender" required>
+                                <select class="form-select" name="gender" id="gender">
                                     <option value="" disabled selected>Choose one</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -59,7 +59,7 @@
                             <div class="mb-3">
                                 <label for="phone" class="form-label"><b>Phone Number</b></label>
                                 <div class="form-floating">
-                                    <input name="phone" type="tel" class="form-control" id="phone" pattern="(\+62|62|0)8[1-9][0-9]{6,9}$" placeholder="Phone Number" value="+62" >
+                                    <input name="phone" type="tel" class="form-control" id="phone" pattern="(\+62|62|0)8[0-9]{7,10}$" placeholder="Phone Number" value="+62" >
                                     <label for="phone" style="color: grey;">Format: +628XXXXXXXXXX</label>    
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="address" class="form-label"><b>Student's Address</b></label>
-                                <textarea name="address" class="form-control" id="address" rows="3" placeholder="Your Address" ></textarea>
+                                <textarea name="address" class="form-control" id="address" rows="3" placeholder="Your Address"></textarea>
                               </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="program" class="form-label"><b>Program of Interest</b></label>
-                                <select class="form-select" name="program" id="program" required>
+                                <select class="form-select" name="program" id="program">
                                     <option value="" disabled selected>Choose one Program</option>
                                     <option value="Management (MAN)">Management</option>
                                     <option value="Informatics (IMT)">Informatics</option>
@@ -109,7 +109,7 @@
                         <div class="col">
                             <div class="mb-3">
                                 <label for="photo" class="form-label"><b>Student's Photo</b></label>
-                                <input name="photo" class="form-control" type="file" id="photo" >
+                                <input name="photo" class="form-control" type="file" id="photo" accept="image/png, image/jpeg" >
                               </div>
                         </div>
                     </div>
@@ -126,33 +126,36 @@
 
         </div>
 
-
-
         <script>
-            var inputan = document.querySelectorAll("input");
+            var inputan = document.querySelectorAll("input", "select", "textarea");
             for(var i = 0; i < inputan.length; i++){
                 inputan[i].required = true;
             }
+
+            var inputDate = document.getElementById("birthdateIn");            
+            inputDate.max = new Date().toISOString().split("T")[0];
+                            
             document.getElementById("registform").addEventListener("submit", function(event){
                 event.preventDefault();
-                event.pre
+
                 var formData = new FormData(this);
                 var formDataSerialized = {};
                 for (var [key, value] of formData.entries()){
                     formDataSerialized[key] = value;
                 }
                 console.log(formDataSerialized);
-                var reader = new FileReader();
+                var styleFoto = `
+                width: 30vw;
+                height: auto;
+                "`;
+
+                let reader = new FileReader();
                 reader.readAsDataURL(document.querySelector("input[type=file]").files[0]);
                 reader.onload = function(){
                     localStorage.setItem("image", reader.result);
-                };
-                var srcFoto = localStorage.getItem("image");
-                var styleFoto = `style="
-                    width: 30vw;
-                    height: auto;
-                "`;
-                var output =
+                    var srcFoto = localStorage.getItem("image");
+                    var photoElement = `<img src="${srcFoto}" style="${styleFoto}">`;
+                    var output =
             `<br><hr><br>
             <h3 style="text-align: center;"><b>Output</b></h3>
             <table class ="table">
@@ -234,15 +237,15 @@
                         <b>Photo</b>
                         </td>
                     <td>
-                        <b>:</b> <img src="${srcFoto}" ${styleFoto}/>
-                        </td>
-                    </tr>
-                </table>`
-
-            document.getElementById('output').innerHTML = "";
-            document.getElementById('output').innerHTML += output;
-
+                        <b>: ${photoElement}
+                        </b> 
+                    </td>
+                </tr>
+            </table>`;
+            document.getElementById('output').innerHTML = output;
+                };
             });
+            
 
         </script>
     </body>
