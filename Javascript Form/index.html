@@ -58,9 +58,20 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="mb-3">
                                 <label for="phone" class="form-label"><b>Phone Number</b></label>
-                                <div class="form-floating">
-                                    <input name="phone" type="tel" class="form-control" id="phone" pattern="(\+62|62|0)8[0-9]{7,10}$" placeholder="Phone Number" value="+62" >
-                                    <label for="phone" style="color: grey;">Format: +628XXXXXXXXXX</label>    
+                                <div class="input-group">
+                                    <select class="input-group-text" id="addon-wrapping" name="countryCode">
+                                        <option value="" disabled>...</option>
+                                        <option value="+60">+60 (Malaysia)</option>
+                                        <option value="+61">+61 (Australia)</option>
+                                        <option value="+62" selected>+62 (Indonesia)</option>
+                                        <option value="+63">+63 (Philippines)</option>
+                                        <option value="+64">+64 (Pitcairn)</option>
+                                        <option value="" disabled>...</option>
+                                    </select>
+                                    <div class="form-floating">
+                                        <input name="phone" type="tel" class="form-control" id="phone" pattern="[0-9]{8,11}$" placeholder="Phone Number" >
+                                        <label for="phone" style="color: grey;">Enter the phone number without country code.</label>    
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +118,7 @@
         
                     <div class="row">
                         <div class="col">
-                            <div class="mb-3">
+                            <div class="mb-3 photostudent">
                                 <label for="photo" class="form-label"><b>Student's Photo</b></label>
                                 <input name="photo" class="form-control" type="file" id="photo" accept="image/*" onchange="checkImage()">
                               </div>
@@ -118,142 +129,14 @@
     
                 <div class="d-flex justify-content-center">
                     <button type="submit" class="btn" form="registform" value="submit" style="margin: 6vh; width: 40vh; color: white; background-color: brown;"><b>Submit!</b></button>
+                    
                 </div>
             </form>
-
             <div class="container" id="output"></div>
 
 
         </div>
 
-        <script>
-            var inputan = document.querySelectorAll("input", "select", "textarea");
-            for(var i = 0; i < inputan.length; i++){
-                inputan[i].required = true;
-            }
-
-            var inputDate = document.getElementById("birthdateIn");            
-            inputDate.max = new Date().toISOString().split("T")[0];
-                            
-            document.getElementById("registform").addEventListener("submit", function(event){
-                event.preventDefault();
-
-                var formData = new FormData(this);
-                var formDataSerialized = {};
-                for (var [key, value] of formData.entries()){
-                    formDataSerialized[key] = value;
-                }
-                console.log(formDataSerialized);
-                var styleFoto = `
-                width: 30vw;
-                height: auto;
-                "`;
-
-                let reader = new FileReader();
-                reader.readAsDataURL(document.querySelector("input[type=file]").files[0]);
-                reader.onload = function(){
-                    localStorage.setItem("image", reader.result);
-                    var srcFoto = localStorage.getItem("image");
-                    var photoElement = `<img src="${srcFoto}" style="${styleFoto}">`;
-                    var output =
-            `<br><hr><br>
-            <h3 style="text-align: center;"><b>Output</b></h3>
-            <table class ="table">
-                <tr>
-                    <td>
-                        <b>Name</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['name']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Date of Birth</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['birthdate']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Gender</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['gender']}</b>
-
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Email Address</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['email']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Home Address</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['address']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Phone Number</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['phone']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Program of Interest</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['program']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Father's Name</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['father']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td>
-                        <b>Mother's Name</b>
-                        </td>
-                    <td>
-                        <b>: ${formDataSerialized['mother']}</b>
-                        </td>
-                    </tr>
-                <tr>
-                    <td style="vertical-align: middle;">
-                        <b>Photo</b>
-                        </td>
-                    <td>
-                        <b>: ${photoElement}
-                        </b> 
-                    </td>
-                </tr>
-            </table>`;
-            document.getElementById('output').innerHTML = output;
-                };
-            });
-            
-            function checkImage(){
-                var inputImageType = document.querySelector("input[type=file]").files[0].type;
-                const valids = ['image/gif', 'image/jpeg', 'image/png'];
-                if(!valids.includes(inputImageType)){
-                    alert("Please insert Image only");
-                    document.querySelector("input[type=file]").value = "";
-                }
-            }
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
