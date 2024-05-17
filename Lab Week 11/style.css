@@ -1,0 +1,48 @@
+.shapeContainerWrapper{
+    padding: 10px;
+}
+
+.shapeContainer{
+    border: 1px solid gray;
+    width: 90vw;
+    height: fit-content;
+    min-height: 20vh;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.controls{
+    padding: 10px;
+}
+
+.shapeControls{
+    padding-top: 10px;
+}
+
+.button{
+    color: white;
+    background-color: green;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.button:hover{
+    background-color: rgb(2, 151, 2);
+}
+
+.shape {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* untuk membuat lingkaran maka radius shapenya 50% */
+.shape.circle {
+    border-radius: 50%;
+}

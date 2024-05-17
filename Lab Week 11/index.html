@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Shape Manipulation | Aaron Kongdoh</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- shapeContainerWrapper digunakan untuk membungkus shapeContainer -->
+        <div class="shapeContainerWrapper">
+            <h3>Use the controls below to manipulate the shapes:</h3>
+
+            <!-- shapeContainer berguna untuk mengelompokkan shape-shape yang akan ditambahkan nantinya -->
+            <div class="shapeContainer">
+
+            </div>
+    
+        </div>
+        <!-- mengelompokkan semua tombol dan kustomisasi masuk ke dalam controls -->
+        <div class="controls">
+            <button class="button" id="addShape">Add Shape</button>
+            <button class="button" id="removeShape">Remove Shape</button>
+
+            <!-- shapeControls untuk kustomisasi shape (shape type, color, size) -->
+            <div class="shapeControls">
+                <!-- Shape Type -->
+                <label for="shapeType">
+                    Shape Type:
+                </label>
+                <select name="shapeType" id="shapeType">
+                    <option value="square" selected>Square</option>
+                    <option value="circle">Circle</option>
+                </select>
+
+                <!-- Shape Color -->
+                <label for="shapeColor">
+                    Shape Color:
+                </label>
+                <input type="color" id="shapeColor" value="#ff0000">
+
+                <!-- Shape Size -->
+                <label for="shapeSize">
+                    Shape Size:
+                </label>
+                <input type="text" value="50" id="shapeSize">
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
