@@ -1,10 +1,17 @@
 $(document).ready(function() {
     // mengambil respon dari user (click) dari id #addShape
+    let isAnimating = false;
+
     $('#addShape').click(function() {
         // mengambil value dari masing-masing shape control
         let shapeType = $('#shapeType').val();
         let shapeColor = $('#shapeColor').val();
         let shapeSize = $('#shapeSize').val();
+
+        // value animasi
+
+        if (isAnimating) return;
+        isAnimating = true;
         
         // menambahkan div baru yang berupa shape dengan atribut value inputan shape control
         let shape = $('<div></div>').addClass('shape').css({
@@ -19,8 +26,6 @@ $(document).ready(function() {
             shape.addClass('circle');
         }
 
-
-
         // setelah class shape dibentuk sesuai keinginan user maka akan ditambahkan (append)
         // ke dalam class shapeContainer
         $('.shapeContainer').append(shape);
@@ -30,6 +35,9 @@ $(document).ready(function() {
                 'left': '0', // pindahkan ke posisi seharusnya
             });
         }, 10);
+        setTimeout(function(){
+            isAnimating = false
+        },1000)
     });
 
     // mengambil respon dari user (click) dari id #removeShape
