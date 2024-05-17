@@ -10,21 +10,38 @@ $(document).ready(function() {
         let shape = $('<div></div>').addClass('shape').css({
             'background-color': shapeColor,
             'width': shapeSize + 'px',
-            'height': shapeSize + 'px'
+            'height': shapeSize + 'px',
         });
 
-        // jika value shapeType berupa 'circle', maka akan menambahkan class 
+        // jika value shapeType berupa 'circle', maka akan menambahkan class circle ke dalam div
+        // yang dimana class circle memiliki atribut border radius 50% diatur di css
         if (shapeType === 'circle') {
             shape.addClass('circle');
         }
 
+
+
         // setelah class shape dibentuk sesuai keinginan user maka akan ditambahkan (append)
         // ke dalam class shapeContainer
         $('.shapeContainer').append(shape);
+        
+        setTimeout(function() {
+            shape.css({
+                'left': '0', // pindahkan ke posisi seharusnya
+            });
+        }, 10);
     });
 
     // mengambil respon dari user (click) dari id #removeShape
     $('#removeShape').click(function() {
-        $('.shapeContainer .shape').last().remove();
+        // membuat variabel last shape untuk mengambil shape terakhir
+        let lastShape = $('.shapeContainer .shape').last();
+
+        // menganimasi shape ketika diremove dengan mengubah opacity ke 0
+        lastShape.animate({
+            opacity: 0
+        }, 500, function() {
+            lastShape.remove();
+        });
     });
 });
